@@ -1,0 +1,241 @@
+https://api.noopschallenge.com
+GET: /fizzbot/questions/DmsVRw515Udx07iNE8QtwEZzxkLQ6x-M0YDJaN1JptA
+{
+    "message": "FizzBuzz is the name of the game.\nHere's a list of numbers.\nSend me back a string as follows:\nFor each number:\nIf it is divisible by 3, print \"Fizz\".\nIf it is divisible by 5, print \"Buzz\".\nIf it is divisible by 3 and 5, print \"FizzBuzz\".\nOtherwise, print the number.\n\nEach entry in the string should be separated by a space.\n\nFor example, if the numbers are [1, 2, 3, 4, 5], you would send back:\n\n{\n  \"answer\": \"1 2 Fizz 4 Buzz\"\n}\n",
+    "rules": [
+        {
+            "number": 3,
+            "response": "Fizz"
+        },
+        {
+            "number": 5,
+            "response": "Buzz"
+        }
+    ],
+    "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+    ],
+    "exampleResponse": {
+        "answer": "1 2 Fizz 4 Buzz..."
+    }
+}
+POST:
+{
+	"answer": "578 Fizz Fizz 128 91 806 314 871 242 Fizz"
+}
+response:
+{
+    "nextQuestion": "/fizzbot/questions/nQNPopOIAK4dvVXEGxSRKuAgte6Bb5q2vA3WstxdPnQ",
+    "message": "You're off to a great start!",
+    "result": "correct"
+}
+
+
+
+GET: /fizzbot/questions/nQNPopOIAK4dvVXEGxSRKuAgte6Bb5q2vA3WstxdPnQ
+{
+    "message": "Here are a few more numbers. The same rules apply.",
+    "rules": [
+        {
+            "number": 3,
+            "response": "Fizz"
+        },
+        {
+            "number": 5,
+            "response": "Buzz"
+        }
+    ],
+    "numbers": [
+        8,
+        59,
+        36,
+        4,
+        55
+    ]
+}
+POST:
+{
+	"answer": "8 59 Fizz 4 Buzz"
+}
+response:
+{
+    "nextQuestion": "/fizzbot/questions/pj8QU-xC_PSpzYj0a67hiwZBft3gR1BRjvX_gyyEqNg",
+    "message": "Correctamundo!",
+    "result": "correct"
+}
+
+
+
+GET: /fizzbot/questions/pj8QU-xC_PSpzYj0a67hiwZBft3gR1BRjvX_gyyEqNg
+{
+    "message": "OK then - here's another list of numbers. Send me back some Fizzes and Buzzes",
+    "rules": [
+        {
+            "number": 3,
+            "response": "Fizz"
+        },
+        {
+            "number": 5,
+            "response": "Buzz"
+        }
+    ],
+    "numbers": [
+        578,
+        117,
+        33,
+        128,
+        91,
+        806,
+        314,
+        871,
+        242,
+        366
+    ]
+}
+POST:
+{
+	"answer": "578 Fizz Fizz 128 91 806 314 871 242 Fizz"
+}
+response:
+{
+    "nextQuestion": "/fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU",
+    "message": "Correctamundo!",
+    "result": "correct"
+}
+
+
+
+GET: /fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU
+{
+    "message": "I'm getting tired of fizzing and buzzing. Let's make it more interesting.\n\nFor numbers that are divisible by two, send me a Beep.\nFor numbers that are divisible by five, send me a Boop.\nFor numbers that are divisible by two and five, send me a BeepBoop.\n\nI've attached the rules to this document for your reference.\n ",
+    "rules": [
+        {
+            "number": 2,
+            "response": "Beep"
+        },
+        {
+            "number": 5,
+            "response": "Boop"
+        }
+    ],
+    "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+    ]
+}
+POST:
+{
+	"answer": "1 Beep 3 Beep Boop Beep 7 Beep 9 BeepBoop"
+}
+response:
+{
+    "nextQuestion": "/fizzbot/questions/OKBu1t62WeGLscR0qqcftOx12jOLngMC00ooh9qCIbE",
+    "message": "Outstanding!",
+    "result": "correct"
+}
+
+
+
+GET: fizzbot/questions/OKBu1t62WeGLscR0qqcftOx12jOLngMC00ooh9qCIbE
+{
+    "message": "Here's another one with the BeepBoop rules.",
+    "rules": [
+        {
+            "number": 2,
+            "response": "Beep"
+        },
+        {
+            "number": 5,
+            "response": "Boop"
+        }
+    ],
+    "numbers": [
+        558,
+        11,
+        702,
+        819,
+        422,
+        58,
+        670,
+        578,
+        126,
+        741
+    ]
+}
+POST:
+{
+	"answer": "Beep 11 Beep 819 Beep Beep BeepBoop Beep Beep 741"
+}
+response:
+{
+    "nextQuestion": "/fizzbot/questions/qKs--aWh-bJ3eIjPEGJAW4xZaAJyVfuviF3DlhlDvsY",
+    "message": "You must be part noopbot!",
+    "result": "correct"
+}
+
+
+
+GET: /fizzbot/questions/qKs--aWh-bJ3eIjPEGJAW4xZaAJyVfuviF3DlhlDvsY
+{
+    "message": "OK - time for the final challenge.\n      This time there are three rules. Can you figure out what to do?\n      ",
+    "rules": [
+        {
+            "number": 3,
+            "response": "Meet"
+        },
+        {
+            "number": 5,
+            "response": "The"
+        },
+        {
+            "number": 7,
+            "response": "Noops"
+        }
+    ],
+    "numbers": [
+        21,
+        97,
+        96,
+        54,
+        29,
+        36,
+        31,
+        69,
+        43,
+        88,
+        105
+    ]
+}
+POST:
+{
+	"answer": "MeetNoops 97 Meet Meet 29 Meet 31 Meet 43 88 MeetTheNoops"
+}
+response
+{
+    "result": "interview complete",
+    "grade": "C",
+    "elapsedSeconds": 53693,
+    "message": "Congratulations!\nYou completed the interview in 53693 seconds.\nYou got it done! Speed counts. Try the interview again to get a higher grade.\n"
+}
