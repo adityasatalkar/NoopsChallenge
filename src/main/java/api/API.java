@@ -1,5 +1,9 @@
 package api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.squareup.okhttp.*;
 
 public class API {
@@ -17,8 +21,16 @@ public class API {
 	private static final String ENCODING_TYPE = "gzip, deflate";
 	private static final String ACCEPT = "Accept";
 
-	// example url 		= "/fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU"
-	public static void get(String url) throws Exception {
+	public static String toPrettyFormat(String jsonString) {
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(jsonString).getAsJsonObject();
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(json);
+	}
+
+	// example url 		= "/fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU";
+	public static String get(String url) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
@@ -32,11 +44,14 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		System.out.println(response.body().string());
+		String prettyJsonResponse = toPrettyFormat(response.body().string());
+		String resultString = url + "\n" + prettyJsonResponse + "\n\n";
+		FileOperations.appendToFile(resultString);
+		return resultString;
 	}
 
 	// example answer	= "{\n\t\"answer\": \"1 Beep 3 Beep Boop Beep 7 Beep 9 BeepBoop\"\n}"
-	public static void post(String url, String answer) throws Exception {
+	public static String post(String url, String answer) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
 		MediaType mediaType = MediaType.parse(RESPONSE_BODY_TYPE);
@@ -54,12 +69,12 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		System.out.println(response.body().string());
+		return toPrettyFormat(response.body().string());
 	}
 
 	public static void main(String[] args) throws Exception {
-		String url = "/fizzbot/questions/1";
-		get(url);
-		post(url,"{\"answer\":\"COBOL\"}");
+		String url = "/fizzbot/questions/DmsVRw515Udx07iNE8QtwEZzxkLQ6x-M0YDJaN1JptA";
+		System.out.println(get(url));
+//		post(url,"{\"answer\":\"COBOL\"}");
 	}
 }
