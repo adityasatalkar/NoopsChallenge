@@ -1,14 +1,56 @@
 package com.adityasatalkar;
 
-import api.FileOperations;
+import api.API;
+import json.parser.JsonData;
+import json.parser.PostResponseJsonData;
 
 /**
  * Hello world!
  *
  */
 public class App {
-    public static void main( String[] args ) {
-        System.out.println(FileOperations.CURRENT_DIR_PATH);
-        System.out.println("FizzBuzz is the name of the game.\nHere\u0027s a list of numbers.\nSend me back a string as follows:\nFor each number:\nIf it is divisible by 3, print \"Fizz\".\nIf it is divisible by 5, print \"Buzz\".\nIf it is divisible by 3 and 5, print \"FizzBuzz\".\nOtherwise, print the number.\n\nEach entry in the string should be separated by a space.\n\nFor example, if the numbers are [1, 2, 3, 4, 5], you would send back:\n\n{\n  \"answer\": \"1 2 Fizz 4 Buzz\"\n}\n");
+
+    public static String initialURL = "/fizzbot/questions/1";
+    public static String initAnswer = "{\n" +
+            "    \"answer\": \"JAVA\"\n" +
+            "}";
+
+
+    public static void noopsChallengeInterview(PostResponseJsonData postResponseJsonData) throws Exception {
+        API api = new API();
+        String url = postResponseJsonData.getNextQuestion();
+
+        System.out.println(url);
+
+        JsonData getJsonData = api.get(url);
+
+        System.out.println(getJsonData.getMessage());
+        System.out.println(getJsonData.getNumbers());
+
+        int numberOfRules = getJsonData.getRules().size();
+
+        String answer = "";
+        if (numberOfRules == 2) {
+            answer = FizzBot.variantOne(getJsonData);
+        } else if (numberOfRules == 3) {
+            answer = FizzBot.variantTwo(getJsonData);
+        }
+
+        postResponseJsonData = api.post(url, api.answerJsonifyString(answer));
+        System.out.println("New challenge is : " + postResponseJsonData.getNextQuestion());
+
+        System.out.println("\n\n******************************************************************************\n\n");
+
+        if (postResponseJsonData.getResult() != "interview complete") {
+            noopsChallengeInterview(postResponseJsonData);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        API api = new API();
+
+        PostResponseJsonData postResponseJsonData = api.post(initialURL, initAnswer);
+
+        noopsChallengeInterview(postResponseJsonData);
     }
 }

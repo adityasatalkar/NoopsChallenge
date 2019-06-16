@@ -1,10 +1,9 @@
 package api;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.squareup.okhttp.*;
+import json.parser.JsonData;
+import json.parser.PostResponseJsonData;
 
 public class API {
 
@@ -21,16 +20,12 @@ public class API {
 	private static final String ENCODING_TYPE = "gzip, deflate";
 	private static final String ACCEPT = "Accept";
 
-	public static String toPrettyFormat(String jsonString) {
-		JsonParser parser = new JsonParser();
-		JsonObject json = parser.parse(jsonString).getAsJsonObject();
-
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(json);
+	public static String answerJsonifyString(String answer) {
+		return "{\n\t\"answer\": \"" + answer + "\"\n}";
 	}
 
 	// example url 		= "/fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU";
-	public static String get(String url) throws Exception {
+	public static JsonData get(String url) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
@@ -44,14 +39,12 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		String prettyJsonResponse = toPrettyFormat(response.body().string());
-		String resultString = url + "\n" + prettyJsonResponse + "\n\n";
-		FileOperations.appendToFile(resultString);
-		return resultString;
+		JsonData jsonData = new Gson().fromJson(response.body().string(), JsonData.class);
+		return jsonData;
 	}
 
 	// example answer	= "{\n\t\"answer\": \"1 Beep 3 Beep Boop Beep 7 Beep 9 BeepBoop\"\n}"
-	public static String post(String url, String answer) throws Exception {
+	public static PostResponseJsonData post(String url, String answer) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
 		MediaType mediaType = MediaType.parse(RESPONSE_BODY_TYPE);
@@ -69,12 +62,9 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		return toPrettyFormat(response.body().string());
-	}
-
-	public static void main(String[] args) throws Exception {
-		String url = "/fizzbot/questions/DmsVRw515Udx07iNE8QtwEZzxkLQ6x-M0YDJaN1JptA";
-		System.out.println(get(url));
-//		post(url,"{\"answer\":\"COBOL\"}");
+		PostResponseJsonData postResponseJsonData = new Gson().fromJson(response.body().string(), PostResponseJsonData.class);
+		System.out.println(postResponseJsonData.getResult());
+		System.out.println(postResponseJsonData.getMessage());
+		return postResponseJsonData;
 	}
 }
