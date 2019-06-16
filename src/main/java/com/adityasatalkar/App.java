@@ -20,12 +20,12 @@ public class App {
         API api = new API();
         String url = postResponseJsonData.getNextQuestion();
 
-        System.out.println(url);
+//        System.out.println(url);
 
         JsonData getJsonData = api.get(url);
 
-        System.out.println(getJsonData.getMessage());
-        System.out.println(getJsonData.getNumbers());
+//        System.out.println(getJsonData.getMessage());
+//        System.out.println(getJsonData.getNumbers());
 
         int numberOfRules = getJsonData.getRules().size();
 
@@ -37,9 +37,9 @@ public class App {
         }
 
         postResponseJsonData = api.post(url, api.answerJsonifyString(answer));
-        System.out.println("New challenge is : " + postResponseJsonData.getNextQuestion());
+//        System.out.println("New challenge is : " + postResponseJsonData.getNextQuestion());
 
-        System.out.println("\n\n******************************************************************************\n\n");
+//        System.out.println("\n\n******************************************************************************\n\n");
 
         if (postResponseJsonData.getResult() != "interview complete") {
             noopsChallengeInterview(postResponseJsonData);

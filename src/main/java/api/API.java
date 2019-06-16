@@ -1,5 +1,6 @@
 package api;
 
+import com.adityasatalkar.FileOperations;
 import com.google.gson.Gson;
 import com.squareup.okhttp.*;
 import json.parser.JsonData;
@@ -24,7 +25,6 @@ public class API {
 		return "{\n\t\"answer\": \"" + answer + "\"\n}";
 	}
 
-	// example url 		= "/fizzbot/questions/R1Z-zESvapYsunTshvRZQivQLRhwk97zCeAjqBekgaU";
 	public static JsonData get(String url) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
@@ -39,11 +39,14 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		JsonData jsonData = new Gson().fromJson(response.body().string(), JsonData.class);
+
+		String responseBodyString = response.body().string();
+		FileOperations.appendToFile("\n\nGET : " + url + "\n" + FileOperations.toPrettyFormat(responseBodyString), "NoopsChallengeCompleted");
+
+		JsonData jsonData = new Gson().fromJson(responseBodyString, JsonData.class);
 		return jsonData;
 	}
 
-	// example answer	= "{\n\t\"answer\": \"1 Beep 3 Beep Boop Beep 7 Beep 9 BeepBoop\"\n}"
 	public static PostResponseJsonData post(String url, String answer) throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
@@ -62,9 +65,10 @@ public class API {
 				.build();
 
 		Response response = client.newCall(request).execute();
-		PostResponseJsonData postResponseJsonData = new Gson().fromJson(response.body().string(), PostResponseJsonData.class);
-		System.out.println(postResponseJsonData.getResult());
-		System.out.println(postResponseJsonData.getMessage());
+		String responseBodyString = response.body().string();
+		FileOperations.appendToFile("POST :\n" + answer + "\nresponse :\n" + FileOperations.toPrettyFormat(responseBodyString),"NoopsChallengeCompleted");
+
+		PostResponseJsonData postResponseJsonData = new Gson().fromJson(responseBodyString, PostResponseJsonData.class);
 		return postResponseJsonData;
 	}
 }

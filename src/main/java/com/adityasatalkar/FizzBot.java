@@ -51,7 +51,7 @@ public class FizzBot {
 				result += " ";
 			}
 		}
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 	}
 
@@ -113,7 +113,7 @@ public class FizzBot {
 				result += " ";
 			}
 		}
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 	}
 }
