@@ -1,31 +1,25 @@
 package com.adityasatalkar;
 
-import api.API;
 import json.parser.JsonData;
 import json.parser.PostResponseJsonData;
 
 /**
- * Hello world!
- *
+ * NOOPS Challenge
+ * Fizzbot wants to interview you
+ * https://noopschallenge.com/challenges/fizzbot
  */
 public class App {
 
-    public static String initialURL = "/fizzbot/questions/1";
-    public static String initAnswer = "{\n" +
+    public static String INITIAL_URL = "/fizzbot/questions/1";
+    public static String INITIAL_ANSWER = "{\n" +
             "    \"answer\": \"JAVA\"\n" +
             "}";
-
+    public static String INTERVIEW_COMPLETE = "interview complete";
 
     public static void noopsChallengeInterview(PostResponseJsonData postResponseJsonData) throws Exception {
-        API api = new API();
         String url = postResponseJsonData.getNextQuestion();
 
-//        System.out.println(url);
-
-        JsonData getJsonData = api.get(url);
-
-//        System.out.println(getJsonData.getMessage());
-//        System.out.println(getJsonData.getNumbers());
+        JsonData getJsonData = API.get(url);
 
         int numberOfRules = getJsonData.getRules().size();
 
@@ -36,21 +30,20 @@ public class App {
             answer = FizzBot.variantTwo(getJsonData);
         }
 
-        postResponseJsonData = api.post(url, api.answerJsonifyString(answer));
-//        System.out.println("New challenge is : " + postResponseJsonData.getNextQuestion());
+        postResponseJsonData = API.post(url, API.answerJsonifyString(answer));
 
-//        System.out.println("\n\n******************************************************************************\n\n");
-
-        if (postResponseJsonData.getResult() != "interview complete") {
+        if (!INTERVIEW_COMPLETE.equalsIgnoreCase(postResponseJsonData.getResult())) {
             noopsChallengeInterview(postResponseJsonData);
         }
     }
 
     public static void main(String[] args) throws Exception {
-        API api = new API();
+        API.get("/fizzbot");
 
-        PostResponseJsonData postResponseJsonData = api.post(initialURL, initAnswer);
+        PostResponseJsonData postResponseJsonData = API.post(INITIAL_URL, INITIAL_ANSWER);
 
         noopsChallengeInterview(postResponseJsonData);
+
+        System.out.println("Check NoopsChallengeCompleted.txt file for output");
     }
 }

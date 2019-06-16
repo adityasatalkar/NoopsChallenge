@@ -1,3 +1,10 @@
+
+
+GET : /fizzbot
+{
+  "message": "Thank you for your application to Noops Inc.\n\nOur automated fizzbot interview process will help us determine if you have what it takes to become a Noop.\n\nFor each question, you will GET the question and then give us the answer back to the same URL.\nYou will also find the URL for the next question in the nextQuestion parameter for each response.\n\nThe first question is at https://api.noopschallenge.com/fizzbot/1.\n\nGood Luck\n",
+  "nextQuestion": "/fizzbot/questions/1"
+}
 POST :
 {
     "answer": "JAVA"
@@ -6,11 +13,11 @@ response :
 {
   "result": "correct",
   "message": "Of course. How interesting. Are you ready for your first REAL question?",
-  "nextQuestion": "/fizzbot/questions/MV3n70c-p1eRRY71IsnmtZahFO1dxq2D4zS4tpWTEXA"
+  "nextQuestion": "/fizzbot/questions/aLQ6kJT4yhlqxFlVjHA5fleCMJEUaLPHtH_NEckLyIE"
 }
 
 
-GET : /fizzbot/questions/MV3n70c-p1eRRY71IsnmtZahFO1dxq2D4zS4tpWTEXA
+GET : /fizzbot/questions/aLQ6kJT4yhlqxFlVjHA5fleCMJEUaLPHtH_NEckLyIE
 {
   "message": "FizzBuzz is the name of the game.\nHere\u0027s a list of numbers.\nSend me back a string as follows:\nFor each number:\nIf it is divisible by 3, print \"Fizz\".\nIf it is divisible by 5, print \"Buzz\".\nIf it is divisible by 3 and 5, print \"FizzBuzz\".\nOtherwise, print the number.\n\nEach entry in the string should be separated by a space.\n\nFor example, if the numbers are [1, 2, 3, 4, 5], you would send back:\n\n{\n  \"answer\": \"1 2 Fizz 4 Buzz\"\n}\n",
   "rules": [
@@ -50,13 +57,13 @@ POST :
 }
 response :
 {
-  "nextQuestion": "/fizzbot/questions/kVPAZrL_uD9fTou71sagefnVGL4tPE00ToOAGnJ0kuY",
+  "nextQuestion": "/fizzbot/questions/3fYn0lLL_3uIcyha-RSiqjJBZMM8coQzfQORPjO7hMM",
   "message": "You\u0027re off to a great start!",
   "result": "correct"
 }
 
 
-GET : /fizzbot/questions/kVPAZrL_uD9fTou71sagefnVGL4tPE00ToOAGnJ0kuY
+GET : /fizzbot/questions/3fYn0lLL_3uIcyha-RSiqjJBZMM8coQzfQORPjO7hMM
 {
   "message": "Here are a few more numbers. The same rules apply.",
   "rules": [
@@ -70,26 +77,26 @@ GET : /fizzbot/questions/kVPAZrL_uD9fTou71sagefnVGL4tPE00ToOAGnJ0kuY
     }
   ],
   "numbers": [
-    65,
-    27,
-    36,
-    46,
-    54
+    68,
+    77,
+    94,
+    85,
+    95
   ]
 }
 POST :
 {
-	"answer": "Buzz Fizz Fizz 46 Fizz"
+	"answer": "68 77 94 Buzz Buzz"
 }
 response :
 {
-  "nextQuestion": "/fizzbot/questions/6h4u1F1acrXFuFpcLPbW8kohvzIpXhvvBjGdh7EgRKE",
+  "nextQuestion": "/fizzbot/questions/23nlRlilUoyF7i1Nn7rYKWoSW5lyXMXiQvccINlMcE0",
   "message": "Correctamundo!",
   "result": "correct"
 }
 
 
-GET : /fizzbot/questions/6h4u1F1acrXFuFpcLPbW8kohvzIpXhvvBjGdh7EgRKE
+GET : /fizzbot/questions/23nlRlilUoyF7i1Nn7rYKWoSW5lyXMXiQvccINlMcE0
 {
   "message": "OK then - here\u0027s another list of numbers. Send me back some Fizzes and Buzzes",
   "rules": [
@@ -103,31 +110,31 @@ GET : /fizzbot/questions/6h4u1F1acrXFuFpcLPbW8kohvzIpXhvvBjGdh7EgRKE
     }
   ],
   "numbers": [
-    304,
-    20,
-    537,
-    553,
-    230,
-    385,
-    7,
-    547,
-    979,
-    19
+    237,
+    330,
+    963,
+    203,
+    971,
+    488,
+    474,
+    884,
+    483,
+    314
   ]
 }
 POST :
 {
-	"answer": "304 Buzz Fizz 553 Buzz Buzz 7 547 979 19"
+	"answer": "Fizz FizzBuzz Fizz 203 971 488 Fizz 884 Fizz 314"
 }
 response :
 {
-  "nextQuestion": "/fizzbot/questions/AQdLOaNg_8_LhCKF0PoMLiRReEAHbDrlcI4ytF4-jFs",
+  "nextQuestion": "/fizzbot/questions/U2qoSlPjpn5hRvAPpm5_8jVdvH2Mg1ZAyllY-WxBKzw",
   "message": "Correctamundo!",
   "result": "correct"
 }
 
 
-GET : /fizzbot/questions/AQdLOaNg_8_LhCKF0PoMLiRReEAHbDrlcI4ytF4-jFs
+GET : /fizzbot/questions/U2qoSlPjpn5hRvAPpm5_8jVdvH2Mg1ZAyllY-WxBKzw
 {
   "message": "I\u0027m getting tired of fizzing and buzzing. Let\u0027s make it more interesting.\n\nFor numbers that are divisible by two, send me a Beep.\nFor numbers that are divisible by five, send me a Boop.\nFor numbers that are divisible by two and five, send me a BeepBoop.\n\nI\u0027ve attached the rules to this document for your reference.\n ",
   "rules": [
@@ -159,13 +166,13 @@ POST :
 }
 response :
 {
-  "nextQuestion": "/fizzbot/questions/MAcXo3qr8PuqygND25F0kSoVhcRDhiYzIdZWRW2dx6s",
+  "nextQuestion": "/fizzbot/questions/7PGWa7hhatS64tbED6WBzr85G9Vs5QqtcQmVJ-_tVIU",
   "message": "Outstanding!",
   "result": "correct"
 }
 
 
-GET : /fizzbot/questions/MAcXo3qr8PuqygND25F0kSoVhcRDhiYzIdZWRW2dx6s
+GET : /fizzbot/questions/7PGWa7hhatS64tbED6WBzr85G9Vs5QqtcQmVJ-_tVIU
 {
   "message": "Here\u0027s another one with the BeepBoop rules.",
   "rules": [
@@ -179,31 +186,31 @@ GET : /fizzbot/questions/MAcXo3qr8PuqygND25F0kSoVhcRDhiYzIdZWRW2dx6s
     }
   ],
   "numbers": [
-    965,
-    138,
-    435,
-    462,
-    709,
-    871,
-    478,
-    161,
-    815,
-    214
+    452,
+    472,
+    134,
+    368,
+    763,
+    348,
+    852,
+    232,
+    132,
+    575
   ]
 }
 POST :
 {
-	"answer": "Boop Beep Boop Beep 709 871 Beep 161 Boop Beep"
+	"answer": "Beep Beep Beep Beep 763 Beep Beep Beep Beep Boop"
 }
 response :
 {
-  "nextQuestion": "/fizzbot/questions/CXgLgV4H0f2QmFk6NFFy-rtzjKpgVkoBx5jFbQpa0eo",
+  "nextQuestion": "/fizzbot/questions/YEoAkMyE9iwnqR3NPg6Ygz28lllbUFKy6-n3NHpoyho",
   "message": "You must be part noopbot!",
   "result": "correct"
 }
 
 
-GET : /fizzbot/questions/CXgLgV4H0f2QmFk6NFFy-rtzjKpgVkoBx5jFbQpa0eo
+GET : /fizzbot/questions/YEoAkMyE9iwnqR3NPg6Ygz28lllbUFKy6-n3NHpoyho
 {
   "message": "OK - time for the final challenge.\n      This time there are three rules. Can you figure out what to do?\n      ",
   "rules": [
@@ -221,22 +228,22 @@ GET : /fizzbot/questions/CXgLgV4H0f2QmFk6NFFy-rtzjKpgVkoBx5jFbQpa0eo
     }
   ],
   "numbers": [
-    63,
-    80,
-    5,
-    94,
-    27,
-    70,
-    49,
-    45,
-    84,
-    41,
+    20,
+    55,
+    87,
+    3,
+    6,
+    7,
+    4,
+    58,
+    38,
+    17,
     105
   ]
 }
 POST :
 {
-	"answer": "MeetNoops The The 94 Meet TheNoops Noops MeetThe MeetNoops 41 MeetTheNoops"
+	"answer": "The The Meet Meet Meet Noops 4 58 38 17 MeetTheNoops"
 }
 response :
 {
